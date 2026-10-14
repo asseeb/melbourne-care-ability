@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Melbourne Care Ability | NDIS Disability Support in South East Melbourne</title>
+  <meta name="description" content="Melbourne Care Ability is a registered NDIS disability support provider serving South East Melbourne. Person-centred support, local workers, and participant choice and control.">
+  <meta name="theme-color" content="#0E4B75">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#0E4B75",
+            teal: "#22A3A6",
+            orange: "#F07C33",
+            surface: "#F2F8F9",
+            ink: "#1A2E3B"
+          },
+          fontFamily: {
+            sans: ['"Source Sans 3"', "ui-sans-serif", "system-ui", "sans-serif"],
+            display: ["Fraunces", "Georgia", "ui-serif", "serif"]
+          },
+          boxShadow: {
+            card: "0 18px 40px -28px rgba(14, 75, 117, 0.45)"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root { color-scheme: light; }
+    html { scroll-behavior: smooth; }
+    [id] { scroll-margin-top: 10rem; }
+    body {
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+    }
+    :focus-visible {
+      outline: 3px solid #0E4B75;
+      outline-offset: 3px;
+    }
+    footer :focus-visible,
+    .on-navy :focus-visible {
+      outline-color: #ffffff;
+    }
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: 0;
+      z-index: 80;
+      transform: translateY(-140%);
+      border-radius: 0 0 0.8rem 0.8rem;
+      background: #ffffff;
+      color: #0E4B75;
+      padding: 0.75rem 1rem;
+      font-weight: 700;
+    }
+    .skip-link:focus { transform: none; }
+    #main:focus,
+    #main:focus-visible { outline: none; }
+    summary { list-style: none; cursor: pointer; }
+    summary::-webkit-details-marker { display: none; }
+    .icon-close { display: none; }
+    details[open] .icon-open { display: none; }
+    details[open] .icon-close { display: inline-flex; }
+    .mobile-panel {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(14, 75, 117, 0.12);
+      box-shadow: 0 18px 40px -28px rgba(14, 75, 117, 0.55);
+    }
+    [data-nav][aria-current="location"] {
+      color: #0E4B75;
+      text-decoration: underline;
+      text-decoration-color: #F07C33;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 0.35rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 3rem;
+      padding: 0.8rem 1.35rem;
+      border-radius: 999px;
+      border: 2px solid transparent;
+      font-weight: 700;
+      line-height: 1.2;
+      text-align: center;
+      text-decoration: none;
+    }
+    .btn-orange { background: #F07C33; color: #1A2E3B; }
+    .btn-orange:hover { background: #0E4B75; color: #ffffff; }
+    .btn-navy { background: #0E4B75; color: #ffffff; }
+    .btn-navy:hover { background: #F07C33; color: #1A2E3B; }
+    .btn-teal { background: #ffffff; color: #0E4B75; border-color: #22A3A6; }
+    .btn-teal:hover { background: #E7F6F6; }
+    .field {
+      width: 100%;
+      min-height: 3rem;
+      border-radius: 0.9rem;
+      border: 1.5px solid rgba(14, 75, 117, 0.22);
+      background: #ffffff;
+      color: #1A2E3B;
+      padding: 0.75rem 0.9rem;
+      font: inherit;
+    }
+    .field::placeholder { color: #3E5563; }
+    
+    .nav-drop { position: relative; display: flex; align-items: center; }
+    .nav-drop-trigger { display: inline-flex; align-items: center; }
+    .nav-drop-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 2.75rem;
+      margin-left: -0.15rem;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+    }
+    .nav-drop-toggle svg { transition: transform 0.15s ease; }
+    .nav-drop:hover .nav-drop-toggle svg,
+    .nav-drop:focus-within .nav-drop-toggle svg,
+    .nav-drop.is-open .nav-drop-toggle svg { transform: rotate(180deg); }
+    .nav-drop-panel {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      z-index: 60;
+      width: min(36rem, calc(100vw - 2rem));
+      padding: 0.65rem;
+      border-radius: 1.25rem;
+      border: 1px solid rgba(14, 75, 117, 0.12);
+      background: #ffffff;
+      box-shadow: 0 22px 44px -28px rgba(14, 75, 117, 0.55);
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .nav-drop-panel::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 100%;
+      height: 0.9rem;
+    }
+    .nav-drop:hover .nav-drop-panel,
+    .nav-drop:focus-within .nav-drop-panel,
+    .nav-drop.is-open .nav-drop-panel {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .nav-drop-panel ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.15rem;
+      max-height: min(70vh, 32rem);
+      margin: 0;
+      padding: 0;
+      overflow-y: auto;
+      list-style: none;
+    }
+    .nav-drop-all { grid-column: 1 / -1; }
+    .nav-drop-panel a {
+      display: flex;
+      align-items: center;
+      min-height: 2.75rem;
+      padding: 0.45rem 0.75rem;
+      border-radius: 0.75rem;
+      color: #1A2E3B;
+      font-weight: 600;
+      line-height: 1.3;
+      text-decoration: none;
+    }
+    .nav-drop-panel a:hover,
+    .nav-drop-panel a:focus-visible { background: #F2F8F9; color: #0E4B75; }
+    .nav-drop-panel a[aria-current="page"] { background: #F2F8F9; color: #0E4B75; font-weight: 700; }
+    .mobile-services > summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      min-height: 2.75rem;
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      font-weight: 600;
+    }
+    .mobile-services > summary:hover { background: #F2F8F9; }
+    .mobile-services ul {
+      display: grid;
+      gap: 0.15rem;
+      margin: 0.15rem 0 0.35rem;
+      padding: 0 0 0 0.35rem;
+      list-style: none;
+    }
+    .mobile-services a {
+      display: flex;
+      align-items: center;
+      min-height: 2.75rem;
+      border-radius: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      color: inherit;
+      text-decoration: none;
+    }
+    .mobile-services a:hover,
+    .mobile-services a:focus-visible { background: #F2F8F9; }
+    .mobile-services a[aria-current="page"] { background: #F2F8F9; color: #0E4B75; font-weight: 700; }
+    .svc-chevron { transition: transform 0.15s ease; }
+    .mobile-services[open] .svc-chevron { transform: rotate(180deg); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body id="top" class="bg-white font-sans text-ink antialiased">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="top-bar on-navy relative bg-gradient-to-r from-[#0A3A5C] via-navy to-[#0A3A5C] text-white">
+    <div class="mx-auto flex max-w-7xl flex-col gap-2.5 px-4 py-2.5 text-sm sm:px-6 lg:flex-row lg:items-center lg:justify-between">
+      <ul class="flex flex-wrap items-center gap-x-5 gap-y-2" role="list">
+        <li>
+          <a class="inline-flex items-center gap-1.5 rounded-full bg-orange px-3 py-1 font-bold text-ink shadow-sm transition-colors hover:bg-white" href="tel:000">
+            <i data-lucide="siren" class="h-4 w-4"></i>Emergency: 000
+          </a>
+        </li>
+        <li class="inline-flex items-center gap-1.5 text-[#E7F4F5] sm:border-l sm:border-white/20 sm:pl-5">
+          <i data-lucide="map-pin" class="h-4 w-4 shrink-0 text-[#7FD6D8]"></i>Serving South East Melbourne &amp; Surrounding Suburbs
+        </li>
+        <li class="inline-flex items-center gap-1.5 font-bold sm:border-l sm:border-white/20 sm:pl-5">
+          <i data-lucide="phone" class="h-4 w-4 shrink-0 text-[#7FD6D8]"></i>Call Us Today: <span class="whitespace-nowrap">1300 XXX XXX</span>
+        </li>
+      </ul>
+      <p class="flex items-center gap-2 font-semibold">
+        <a class="inline-flex items-center gap-1.5 rounded-full bg-[#1B7F82] px-3.5 py-1 text-white transition-colors hover:bg-[#156568]" href="#contact">
+          <i data-lucide="send" class="h-3.5 w-3.5"></i>Make a Referral
+        </a>
+        <a class="inline-flex items-center gap-1.5 rounded-full border border-white/40 px-3.5 py-1 transition-colors hover:border-white hover:bg-white/10" href="#contact">
+          <i data-lucide="mail" class="h-3.5 w-3.5"></i>Contact Us
+        </a>
+      </p>
+    </div>
+    <div class="h-1 bg-gradient-to-r from-teal via-teal to-orange" aria-hidden="true"></div>
+  </div>
+
+  <header class="sticky top-0 z-50 border-b border-navy/10 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:px-6">
+      <a href="#top" class="mr-auto flex min-w-0 items-center">
+        <img src="logo.png" alt="Melbourne Care Ability" width="589" height="705" class="h-28 w-auto sm:h-32">
+      </a>
+
+      <nav class="hidden items-center gap-x-4 xl:flex" aria-label="Primary">
+        <a data-nav href="#top" class="inline-flex min-h-11 items-center">Home</a>
+        <a data-nav href="#about" class="inline-flex min-h-11 items-center">About Us</a>
+        <div class="nav-drop">
+          <div class="nav-drop-trigger">
+            <a data-nav href="#services" class="inline-flex min-h-11 items-center">NDIS Services</a>
+            <button type="button" class="nav-drop-toggle" aria-expanded="false" aria-controls="services-menu" aria-label="Show services menu">
+              <i data-lucide="chevron-down" class="h-4 w-4"></i>
+            </button>
+          </div>
+          <div id="services-menu" class="nav-drop-panel">
+            <ul>
+                <li><a href="services/accommodation-tenancy-assistance/">Accommodation / Tenancy Assistance</a></li>
+                <li><a href="services/high-intensity-personal-care/">Assist Personal Activities High</a></li>
+                <li><a href="services/life-stage-transition-support/">Assist-Life Stage, Transition</a></li>
+                <li><a href="services/daily-personal-care/">Assist-Personal Activities</a></li>
+                <li><a href="services/travel-and-transport-support/">Assist-Travel / Transport</a></li>
+                <li><a href="services/community-nursing-care/">Community Nursing Care</a></li>
+                <li><a href="services/shared-living-daily-tasks/">Daily Tasks / Shared Living</a></li>
+                <li><a href="services/innovative-community-participation/">Innov Community Participation</a></li>
+                <li><a href="services/life-skills-development/">Development-Life Skills</a></li>
+                <li><a href="services/household-tasks/">Household Tasks</a></li>
+                <li><a href="services/community-participation/">Participate Community</a></li>
+                <li><a href="services/specialised-disability-accommodation/">Specialised Disability Accommodation</a></li>
+                <li><a href="services/group-and-centre-activities/">Group / Centre Activities</a></li>
+                <li><a href="services/supported-independent-living/">Supported Independent Living</a></li>
+            </ul>
+          </div>
+        </div>
+        <a data-nav href="#why-choose-us" class="inline-flex min-h-11 items-center">Why Choose Us</a>
+        <a data-nav href="#service-areas" class="inline-flex min-h-11 items-center">Service Areas</a>
+        <a data-nav href="#contact" class="inline-flex min-h-11 items-center">Contact Us</a>
+      </nav>
+
+      <a href="#contact" class="btn btn-orange hidden sm:inline-flex">Refer a Participant</a>
+
+      <details id="mobile-nav" class="xl:hidden">
+        <summary class="grid h-11 w-11 place-items-center rounded-full text-navy" aria-label="Open menu">
+          <span class="icon-open"><i data-lucide="menu" class="h-6 w-6"></i></span>
+          <span class="icon-close"><i data-lucide="x" class="h-6 w-6"></i></span>
+        </summary>
+        <div class="mobile-panel px-4 py-4 sm:px-6">
+          <nav aria-label="Mobile">
+            <ul class="grid gap-1">
+              <li><a data-nav class="block rounded-xl px-3 py-3" href="#top">Home</a></li>
+              <li><a data-nav class="block rounded-xl px-3 py-3" href="#about">About Us</a></li>
+              <li>
+                <details class="mobile-services">
+                  <summary>
+                    <span>NDIS Services</span>
+                    <i data-lucide="chevron-down" class="svc-chevron h-5 w-5"></i>
+                  </summary>
+                  <ul>
+                    <li><a href="services/accommodation-tenancy-assistance/">Accommodation / Tenancy Assistance</a></li>
+                <li><a href="services/high-intensity-personal-care/">Assist Personal Activities High</a></li>
+                <li><a href="services/life-stage-transition-support/">Assist-Life Stage, Transition</a></li>
+                <li><a href="services/daily-personal-care/">Assist-Personal Activities</a></li>
+                <li><a href="services/travel-and-transport-support/">Assist-Travel / Transport</a></li>
+                <li><a href="services/community-nursing-care/">Community Nursing Care</a></li>
+                <li><a href="services/shared-living-daily-tasks/">Daily Tasks / Shared Living</a></li>
+                <li><a href="services/innovative-community-participation/">Innov Community Participation</a></li>
+                <li><a href="services/life-skills-development/">Development-Life Skills</a></li>
+                <li><a href="services/household-tasks/">Household Tasks</a></li>
+                <li><a href="services/community-participation/">Participate Community</a></li>
+                <li><a href="services/specialised-disability-accommodation/">Specialised Disability Accommodation</a></li>
+                <li><a href="services/group-and-centre-activities/">Group / Centre Activities</a></li>
+                <li><a href="services/supported-independent-living/">Supported Independent Living</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li><a data-nav class="block rounded-xl px-3 py-3" href="#why-choose-us">Why Choose Us</a></li>
+              <li><a data-nav class="block rounded-xl px-3 py-3" href="#service-areas">Service Areas</a></li>
+              <li><a data-nav class="block rounded-xl px-3 py-3" href="#contact">Contact Us</a></li>
+            </ul>
+            <a href="#contact" class="btn btn-orange mt-3 w-full">Refer a Participant</a>
+          </nav>
+        </div>
+      </details>
+    </div>
+    <div class="h-1 bg-gradient-to-r from-navy via-teal to-orange" aria-hidden="true"></div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="relative overflow-hidden bg-gradient-to-b from-white to-surface" aria-labelledby="hero-heading">
+      <div class="pointer-events-none absolute -left-24 top-10 h-64 w-64 rounded-full bg-teal/10 blur-3xl" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute bottom-0 right-0 h-72 w-72 rounded-full bg-orange/10 blur-3xl" aria-hidden="true"></div>
+      <div class="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:py-20">
+        <div>
+          <p class="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.16em] text-navy">
+            <span class="h-1 w-10 rounded-full bg-teal" aria-hidden="true"></span>
+            NDIS support, South East Melbourne
+          </p>
+          <h1 id="hero-heading" class="mt-4 max-w-xl text-balance font-display text-4xl font-semibold leading-[1.12] text-navy sm:text-5xl">
+            Empowering Independence &amp; Quality Care Across South East Melbourne
+          </h1>
+          <p class="mt-5 max-w-xl text-pretty text-lg leading-relaxed text-ink">
+            Compassionate, participant-focused NDIS disability support services tailored to your personal goals, choice, and control.
+          </p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a class="btn btn-navy" href="#services">
+              Explore Our NDIS Services
+              <i data-lucide="arrow-right" class="h-5 w-5"></i>
+            </a>
+            <a class="btn btn-teal" href="#contact">Book a Consultation</a>
+          </div>
+          <ul class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <li class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-navy shadow-card ring-1 ring-navy/10">
+              <i data-lucide="badge-check" class="h-5 w-5 text-teal"></i>
+              NDIS Registered Provider
+            </li>
+            <li class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-navy shadow-card ring-1 ring-navy/10">
+              <i data-lucide="map-pin" class="h-5 w-5 text-teal"></i>
+              Local South East Team
+            </li>
+            <li class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-navy shadow-card ring-1 ring-navy/10">
+              <i data-lucide="clock" class="h-5 w-5 text-teal"></i>
+              24/7 Dedicated Care
+            </li>
+          </ul>
+        </div>
+
+        <div class="on-navy relative overflow-hidden rounded-[2rem] bg-navy px-6 py-8 text-white shadow-card sm:px-8 sm:py-10">
+          <svg class="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 640 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+            <path d="M-10 150C150 90 250 20 410 70c130 40 190 30 270-30" fill="none" stroke="#22A3A6" stroke-width="28" stroke-linecap="round"/>
+            <path d="M-20 230C150 190 270 240 410 190c110-38 170-16 270 36" fill="none" stroke="#F07C33" stroke-width="16" stroke-linecap="round"/>
+            <path d="M40 640c150-90 250-110 390-40 90 44 150 24 230-20" fill="none" stroke="#22A3A6" stroke-width="20" stroke-linecap="round" opacity="0.55"/>
+          </svg>
+          <div class="relative">
+            <p class="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.16em] text-[#E7F4F5]">
+              <span class="h-1 w-8 rounded-full bg-orange" aria-hidden="true"></span>
+              With you
+            </p>
+            <p class="mt-3 max-w-sm font-display text-4xl font-semibold leading-tight text-white">Care that follows your choices.</p>
+            <ul class="mt-8 space-y-3">
+              <li class="flex gap-3 rounded-2xl bg-white p-4 text-ink shadow-lg">
+                <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal text-white">
+                  <i data-lucide="heart" class="h-5 w-5"></i>
+                </span>
+                <span>
+                  <span class="block font-bold text-navy">Listen first</span>
+                  <span class="mt-0.5 block text-base">Your goals, culture, and daily routines set the plan.</span>
+                </span>
+              </li>
+              <li class="flex gap-3 rounded-2xl bg-white p-4 text-ink shadow-lg">
+                <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal text-white">
+                  <i data-lucide="map-pin" class="h-5 w-5"></i>
+                </span>
+                <span>
+                  <span class="block font-bold text-navy">Local team</span>
+                  <span class="mt-0.5 block text-base">Support workers who know South East Melbourne.</span>
+                </span>
+              </li>
+              <li class="flex gap-3 rounded-2xl bg-white p-4 text-ink shadow-lg">
+                <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-teal text-white">
+                  <i data-lucide="file-check" class="h-5 w-5"></i>
+                </span>
+                <span>
+                  <span class="block font-bold text-navy">Clear start</span>
+                  <span class="mt-0.5 block text-base">A service agreement before support begins.</span>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="bg-white" aria-labelledby="about-heading">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
+        <div>
+          <p class="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.16em] text-navy">
+            <span class="h-1 w-10 rounded-full bg-teal" aria-hidden="true"></span>
+            About us
+          </p>
+          <h2 id="about-heading" class="mt-3 text-balance font-display text-3xl font-semibold leading-tight text-navy sm:text-4xl">
+            Person-centred care for South East Melbourne
+          </h2>
+          <div class="mt-5 space-y-4 text-lg leading-relaxed">
+            <p>
+              Melbourne Care Ability supports people with disability to live with dignity, choice, and connection. We work with you, your family, and your support network across South East Melbourne.
+            </p>
+            <p>
+              Support is built around your goals, your culture, and the way you want to live. You decide what good support looks like. We listen, plan with you, and adjust when life changes.
+            </p>
+            <p>
+              Participants, families, support coordinators, and plan managers are welcome. We respect linguistic and cultural diversity and keep communication plain and direct.
+            </p>
+          </div>
+        </div>
+        <div class="on-navy rounded-[2rem] bg-navy p-8 text-white shadow-card sm:p-10">
+          <h3 class="font-display text-3xl font-semibold leading-tight">What choice and control means here</h3>
+          <ul class="mt-6 space-y-4">
+            <li class="flex gap-3">
+              <i data-lucide="check" class="mt-1 h-5 w-5 shrink-0 text-orange"></i>
+              <span>You choose who supports you, wherever we can match that preference.</span>
+            </li>
+            <li class="flex gap-3">
+              <i data-lucide="check" class="mt-1 h-5 w-5 shrink-0 text-orange"></i>
+              <span>Goals are written in your words, not only in service language.</span>
+            </li>
+            <li class="flex gap-3">
+              <i data-lucide="check" class="mt-1 h-5 w-5 shrink-0 text-orange"></i>
+              <span>Plans can change when your needs, home, or goals change.</span>
+            </li>
+            <li class="flex gap-3">
+              <i data-lucide="check" class="mt-1 h-5 w-5 shrink-0 text-orange"></i>
+              <span>Family and coordinators are included when you want them involved.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-choose-us" class="bg-surface" aria-labelledby="why-heading">
+      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
+        <div class="max-w-2xl">
+          <p class="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.16em] text-navy">
+            <span class="h-1 w-10 rounded-full bg-orange" aria-hidden="true"></span>
+            Why choose us
+          </p>
+          <h2 id="why-heading" class="mt-3 text-balance font-display text-3xl font-semibold leading-tight text-navy sm:text-4xl">
+            Four commitments in every support relationship
+          </h2>
+          <p class="mt-4 text-lg">Open a card to read how each commitment works in practice.</p>
+        </div>
+        <div class="mt-10 grid gap-5 md:grid-cols-2">
+          <details class="group rounded-3xl bg-white p-6 shadow-card ring-1 ring-navy/10 open:ring-2 open:ring-teal">
+            <summary class="flex items-start gap-4">
+              <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-teal text-white">
+                <i data-lucide="heart" class="h-7 w-7"></i>
+              </span>
+              <span class="min-w-0 flex-1">
+                <span class="block font-display text-2xl font-semibold text-navy">Person-Centred Approach</span>
+                <span class="mt-1 block text-base text-ink">Tailored individual care plans built around your goals, routines, and preferences.</span>
+              </span>
+              <i data-lucide="chevron-down" class="mt-1 h-5 w-5 shrink-0 text-navy transition group-open:rotate-180"></i>
+            </summary>
+            <p class="mt-4 pl-0 text-base leading-relaxed sm:pl-[4.5rem]">
+              We start with what matters to you: how you spend your day, who you want involved, and what independence looks like. Supports are written in plain language and reviewed with you.
+            </p>
+          </details>
+
+          <details class="group rounded-3xl bg-white p-6 shadow-card ring-1 ring-navy/10 open:ring-2 open:ring-teal">
+            <summary class="flex items-start gap-4">
+              <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-teal text-white">
+                <i data-lucide="shield-check" class="h-7 w-7"></i>
+              </span>
+              <span class="min-w-0 flex-1">
+                <span class="block font-display text-2xl font-semibold text-navy">Dedicated Local Support Workers</span>
+                <span class="mt-1 block text-base text-ink">Experienced and vetted local staff who know South East Melbourne.</span>
+              </span>
+              <i data-lucide="chevron-down" class="mt-1 h-5 w-5 shrink-0 text-navy transition group-open:rotate-180"></i>
+            </summary>
+            <p class="mt-4 text-base leading-relaxed sm:pl-[4.5rem]">
+              Workers are matched with your preferences in mind, including skills, personality, and language where we can. Screening checks are completed before support starts.
+            </p>
+          </details>
+
+          <details class="group rounded-3xl bg-white p-6 shadow-card ring-1 ring-navy/10 open:ring-2 open:ring-teal">
+            <summary class="flex items-start gap-4">
+              <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-teal text-white">
+                <i data-lucide="zap" class="h-7 w-7"></i>
+              </span>
+              <span class="min-w-0 flex-1">
+                <span class="block font-display text-2xl font-semibold text-navy">Rapid Response &amp; Onboarding</span>
+                <span class="mt-1 block text-base text-ink">Fast intake and clear service agreements so support can begin smoothly.</span>
+              </span>
+              <i data-lucide="chevron-down" class="mt-1 h-5 w-5 shrink-0 text-navy transition group-open:rotate-180"></i>
+            </summary>
+            <p class="mt-4 text-base leading-relaxed sm:pl-[4.5rem]">
+              After a referral we confirm your details, talk through the right registration groups, and prepare a service agreement you can review before anything starts.
+            </p>
+          </details>
+
+          <details class="group rounded-3xl bg-white p-6 shadow-card ring-1 ring-navy/10 open:ring-2 open:ring-teal">
+            <summary class="flex items-start gap-4">
+              <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-teal text-white">
+                <i data-lucide="languages" class="h-7 w-7"></i>
+              </span>
+              <span class="min-w-0 flex-1">
+                <span class="block font-display text-2xl font-semibold text-navy">Cultural &amp; Linguistic Diversity</span>
+                <span class="mt-1 block text-base text-ink">Inclusive care suited to Melbourne’s multicultural communities.</span>
+              </span>
+              <i data-lucide="chevron-down" class="mt-1 h-5 w-5 shrink-0 text-navy transition group-open:rotate-180"></i>
+            </summary>
+            <p class="mt-4 text-base leading-relaxed sm:pl-[4.5rem]">
+              We respect culture, faith, family roles, and language. Tell us what respectful support looks like for you, and we will build that into the way support is delivered.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="bg-white" aria-labelledby="services-heading">
+      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div class="max-w-2xl">
+            <p class="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.16em] text-navy">
+              <span class="h-1 w-10 rounded-full bg-teal" aria-hidden="true"></span>
+              NDIS services
+            </p>
+            <h2 id="services-heading" class="mt-3 text-balance font-display text-3xl font-semibold leading-tight text-navy sm:text-4xl">
+              Registration groups we support
+            </h2>
+            <p class="mt-4 text-lg">Fourteen registration groups, from daily personal activities to specialised disability accommodation. Search by keyword.</p>
+          </div>
+          <div role="search" class="w-full lg:max-w-md">
+            <label for="service-filter" class="mb-2 block font-bold text-navy">Search registration groups</label>
+            <div class="flex gap-2">
+              <input id="service-filter" class="field" type="search" placeholder="Try nursing, transport, or household" autocomplete="off">
+              <button id="clear-filter" class="btn btn-teal shrink-0 px-4" type="button" hidden>Clear</button>
+            </div>
+          </div>
+        </div>
+        <p id="service-status" class="mt-4 min-h-6 font-semibold text-navy" aria-live="polite"></p>
+        <div id="service-grid" class="mt-4 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          <article id="service-0101" class="flex h-full flex-col rounded-3xl bg-surface p-6 ring-1 ring-navy/10">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-teal text-white"><i data-lucide="home" class="h-6 w-6"></i></span>
+            <h3 class="mt-4 font-display text-2xl font-semibold leading-tight text-navy">Accommodation / Tenancy Assistance</h3>
+            <p class="mt-3">Help to find and keep a home, understand a tenancy, and sort practical housing tasks.</p>
+          <a class="mt-auto inline-flex min-h-11 items-center pt-4 font-bold text-navy underline decoration-orange decoration-2 underline-offset-4" href="services/accommodation-tenancy-assistance/">Learn more<span class="sr-only"> about accommodation and tenancy assistance</span></a>
+          </article>
+          <article id="service-0104" class="flex h-full flex-col rounded-3xl bg-surface p-6 ring-1 ring-navy/10">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-teal text-white"><i data-lucide="heart-pulse" class="h-6 w-6"></i></span>
+            <h3 class="mt-4 font-display text-2xl font-semibold leading-tight text-navy">Assist Personal Activities High</h3>
+            <p class="mt-3">High intensity daily personal activities for participants who need skilled support with complex personal care.</p>
+          <a class="mt-auto inline-flex min-h-11 items-center pt-4 font-bold text-navy underline decoration-orange decoration-2 underline-offset-4" href="services/high-intensity-personal-care/">Learn more<span class="sr-only"> about high intensity personal activities</span></a>
+          </article>
+          <article id="service-0106" class="flex h-full flex-col rounded-3xl bg-surface p-6 ring-1 ring-navy/10">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-teal text-white"><i data-lucide="milestone" class="h-6 w-6"></i></span>
+            <h3 class="mt-4 font-display text-2xl font-semibold leading-tight text-navy">Assist-Life Stage, Transition</h3>
+            <p class="mt-3">Life stage transition support and mentoring through changes such as leaving school, starting work, or moving home.</p>
+          <a class="mt-auto inline-flex min-h-11 items-center pt-4 font-bold text-navy underline decoration-orange decoration-2 underline-offset-4" href="services/life-stage-transition-support/">Learn more<span class="sr-only"> about life stage and transition support</span></a>
+          </article>
+          <article id="service-0107" class="flex h-full flex-col rounded-3xl bg-surface p-6 ring-1 ring-navy/10">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-teal text-white"><i data-lucide="hand-heart" class="h-6 w-6"></i></span>
+            <h3 class="mt-4 font-display text-2xl font-semibold leading-tight text-navy">Assist-Personal Activities</h3>
+            <p class="mt-3">Daily personal care and assistance that supports your routine, comfort, and privacy at home.</p>
+          <a class="mt-auto inline-flex min-h-11 items-center pt-4 font-bold text-navy underline decoration-orange decoration-2 underline-offset-4" href="services/daily-personal-care/">Learn more<span class="sr-only"> about daily personal care</span></a>
+          </article>
+          <article id="service-0108" class="flex h-full flex-col rounded-3xl bg-surface p-6 ring-1 ring-navy/10">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-teal text-white"><i data-lucide="bus" class="h-6 w-6"></i></span>
+            <h3 class="mt-4 font-display text-2xl font-semibold leading-tight text-navy">Assist-Travel / Transport</h3>
+            <p class="mt-3">Travel and transport arrangements so you can get to appointments, programs, and community activities.</p>
+          <a class="mt-auto inline-flex min-h-11 items-center pt-4 font-bold text-navy underline decoration-orange decoration-2 underline-offset-4" href="services/travel-and-transport-support/">Learn more<span class="sr-only"> about travel and transport support</span></a>
+          </article>
+          <article id="service-0114" class="flex h-full flex-col rounded-3xl bg-surface p-6 ring-1 ring-navy/10">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-teal text-white"><i data-lucide="stethoscope" class="h-6 w-6"></i></span>
+            <h3 class="mt-4 font-display text-2xl font-semibold leading-tight text-navy">Community Nursing Care</h3>
+            <p class="mt-3">Clinical and specialised health nursing in the community, delivered by qualified nurses.</p>
+          <a class="mt-auto inline-flex min-h-11 items-center pt-4 font-bold text-navy underline decoration-orange decoration-2 underline-offset-4" href="services/community-nursing-care/">Learn more<span class="sr-only"> about community nursing care</span></a>
+          </article>
+          <article id="service-0115" class="flex h-full flex-col rounded-3xl bg-surface p-6 ring-1 ring-navy/10">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-teal text-white"><i data-lucide="users" class="h-6 w-6"></i></span>
+            <h3 class="mt-4 font-display text-2xl font-semibold leading-tight text-navy">Daily Tasks / Shared Living</h3>
+            <p class="mt-3">SIL and shared accommodation support with daily tasks when you live with other people.</p>
+          <a class="mt-auto inline-flex min-h-11 items-center pt-4 font-bold text-navy underline decoration-orange decoration-2 underline-offset-4" href="services/shared-living-daily-tasks/">Learn more<span class="sr-only"> about daily tasks in shared living</span></a>
+          </article>
+          <article id="service-0116" class="flex h-full flex-col rounded-3xl bg-surface p-6 ring-1 ring-navy/10">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-teal text-white"><i data-lucide="sparkles" class="h-6 w-6"></i></span>
+            <h3 class="mt-4 font-display text-2xl font-semibold leading-tight text-navy">Innov Community Participation</h3>
+            <p class="mt-3">Innovative community participation programs shaped around your interests, connection, and goals.</p>
+          <a class="mt-auto inline-flex min-h-11 items-center pt-4 font-bold text-navy underline decoration-orange decoration-2 underline-offset-4" href="services/innovative-community-participation/">Learn more<span class="sr-only"> about innovative community participation</span></a>
+          </article>
+          <article id="service-0117" class="flex h-full flex-col rounded-3xl bg-surface p-6 ring-1 ring-navy/10">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-teal text-white"><i data-lucide="lightbulb" class="h-6 w-6"></i></span>
+            <h3 class="mt-4 font-display text-2xl font-semibold leading-tight text-navy">Development-Life Skills</h3>
+            <p class="mt-3">Daily living and life skills development, including cooking, budgeting, travel, and self-advocacy.</p>
+          <a class="mt-auto inline-flex min-h-11 items-center pt-4 font-bold text-navy underline decoration-orange decoration-2 underline-offset-4" href="services/life-skills-development/">Learn more<span class="sr-only"> about life skills development</span></a>
+          </article>
+          <article id="service-0120" class="flex h-full flex-col rounded-3xl bg-surface p-6 ring-1 ring-navy/10">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-teal text-white"><i data-lucide="cooking-pot" class="h-6 w-6"></i></span>
+            <h3 class="mt-4 font-display text-2xl font-semibold leading-tight text-navy">Household Tasks</h3>
+            <p class="mt-3">Domestic assistance, cleaning, and meal preparation so your home stays manageable.</p>
+          <a class="mt-auto inline-flex min-h-11 items-center pt-4 font-bold text-navy underline decoration-orange decoration-2 underline-offset-4" href="services/household-tasks/">Learn more<span class="sr-only"> about household tasks</span></a>
+          </article>
+          <article id="service-0125" class="flex h-full flex-col rounded-3xl bg-surface p-6 ring-1 ring-navy/10">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-teal text-white"><i data-lucide="map-pin" class="h-6 w-6"></i></span>
+            <h3 class="mt-4 font-display text-2xl font-semibold leading-tight text-navy">Participate Community</h3>
+            <p class="mt-3">Community, social, and civic participation so you can join local activities with the right support.</p>
+          <a class="mt-auto inline-flex min-h-11 items-center pt-4 font-bold text-navy underline decoration-orange decoration-2 underline-offset-4" href="services/community-participation/">Learn more<span class="sr-only"> about community participation</span></a>
+          </article>
+          <article id="service-0131" class="flex h-full flex-col rounded-3xl bg-surface p-6 ring-1 ring-navy/10">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-teal text-white"><i data-lucide="building-2" class="h-6 w-6"></i></span>
+            <h3 class="mt-4 font-display text-2xl font-semibold leading-tight text-navy">Specialised Disability Accommodation</h3>
+            <p class="mt-3">SDA housing options designed for people with very high support needs.</p>
+          <a class="mt-auto inline-flex min-h-11 items-center pt-4 font-bold text-navy underline decoration-orange decoration-2 underline-offset-4" href="services/specialised-disability-accommodation/">Learn more<span class="sr-only"> about specialised disability accommodation</span></a>
+          </article>
+          <article id="service-0136" class="flex h-full flex-col rounded-3xl bg-surface p-6 ring-1 ring-navy/10">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-teal text-white"><i data-lucide="layout-grid" class="h-6 w-6"></i></span>
+            <h3 class="mt-4 font-display text-2xl font-semibold leading-tight text-navy">Group / Centre Activities</h3>
+            <p class="mt-3">Centre-based and group activities where you can build skills, socialise, and take part with others.</p>
+          <a class="mt-auto inline-flex min-h-11 items-center pt-4 font-bold text-navy underline decoration-orange decoration-2 underline-offset-4" href="services/group-and-centre-activities/">Learn more<span class="sr-only"> about group and centre activities</span></a>
+          </article>
+          <article id="service-0138" class="flex h-full flex-col rounded-3xl bg-surface p-6 ring-1 ring-navy/10">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-teal text-white"><i data-lucide="house" class="h-6 w-6"></i></span>
+            <h3 class="mt-4 font-display text-2xl font-semibold leading-tight text-navy">Supported Independent Living</h3>
+            <p class="mt-3">SIL in-home care for participants who need significant daily support to live as independently as possible.</p>
+          <a class="mt-auto inline-flex min-h-11 items-center pt-4 font-bold text-navy underline decoration-orange decoration-2 underline-offset-4" href="services/supported-independent-living/">Learn more<span class="sr-only"> about supported independent living</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="service-areas" class="bg-surface" aria-labelledby="areas-heading">
+      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
+        <div class="max-w-2xl">
+          <p class="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.16em] text-navy">
+            <span class="h-1 w-10 rounded-full bg-orange" aria-hidden="true"></span>
+            Service areas
+          </p>
+          <h2 id="areas-heading" class="mt-3 text-balance font-display text-3xl font-semibold leading-tight text-navy sm:text-4xl">
+            Local coverage across South East Melbourne
+          </h2>
+          <p class="mt-4 text-lg">Support at home and in the community across these council areas. If your suburb is nearby and not listed, ask us and we will confirm coverage.</p>
+        </div>
+        <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <li class="rounded-3xl bg-white p-6 shadow-card ring-1 ring-navy/10">
+            <div class="flex items-center gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-xl bg-navy text-white"><i data-lucide="map" class="h-5 w-5"></i></span>
+              <h3 class="font-display text-2xl font-semibold text-navy">City of Casey</h3>
+            </div>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Cranbourne</li>
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Berwick</li>
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Narre Warren</li>
+            </ul>
+          </li>
+          <li class="rounded-3xl bg-white p-6 shadow-card ring-1 ring-navy/10">
+            <div class="flex items-center gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-xl bg-navy text-white"><i data-lucide="map" class="h-5 w-5"></i></span>
+              <h3 class="font-display text-2xl font-semibold text-navy">City of Greater Dandenong</h3>
+            </div>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Dandenong</li>
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Noble Park</li>
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Keysborough</li>
+            </ul>
+          </li>
+          <li class="rounded-3xl bg-white p-6 shadow-card ring-1 ring-navy/10">
+            <div class="flex items-center gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-xl bg-navy text-white"><i data-lucide="map" class="h-5 w-5"></i></span>
+              <h3 class="font-display text-2xl font-semibold text-navy">City of Frankston</h3>
+            </div>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Frankston</li>
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Carrum Downs</li>
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Seaford</li>
+            </ul>
+          </li>
+          <li class="rounded-3xl bg-white p-6 shadow-card ring-1 ring-navy/10">
+            <div class="flex items-center gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-xl bg-navy text-white"><i data-lucide="map" class="h-5 w-5"></i></span>
+              <h3 class="font-display text-2xl font-semibold text-navy">City of Monash</h3>
+            </div>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Glen Waverley</li>
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Clayton</li>
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Mount Waverley</li>
+            </ul>
+          </li>
+          <li class="rounded-3xl bg-white p-6 shadow-card ring-1 ring-navy/10">
+            <div class="flex items-center gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-xl bg-navy text-white"><i data-lucide="map" class="h-5 w-5"></i></span>
+              <h3 class="font-display text-2xl font-semibold text-navy">City of Kingston</h3>
+            </div>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Mordialloc</li>
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Moorabbin</li>
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Cheltenham</li>
+            </ul>
+          </li>
+          <li class="rounded-3xl bg-white p-6 shadow-card ring-1 ring-navy/10">
+            <div class="flex items-center gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-xl bg-navy text-white"><i data-lucide="map" class="h-5 w-5"></i></span>
+              <h3 class="font-display text-2xl font-semibold leading-tight text-navy">Mornington Peninsula &amp; Surrounds</h3>
+            </div>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Mornington</li>
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Rosebud</li>
+              <li class="rounded-full bg-surface px-3 py-1 text-sm font-semibold text-navy">Hastings</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="bg-white" aria-labelledby="contact-heading">
+      <div class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:py-24">
+        <div>
+          <p class="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.16em] text-navy">
+            <span class="h-1 w-10 rounded-full bg-orange" aria-hidden="true"></span>
+            Intake
+          </p>
+          <h2 id="contact-heading" class="mt-3 text-balance font-display text-3xl font-semibold leading-tight text-navy sm:text-4xl">
+            Submit a Referral / General Inquiry
+          </h2>
+          <p class="mt-4 text-lg">We welcome referrals from Participants, Support Coordinators, Plan Managers, and Family Members.</p>
+          <ol class="mt-8 space-y-4">
+            <li class="flex gap-4">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-navy font-bold text-white">1</span>
+              <span><span class="block font-bold text-navy">Share your details</span> Tell us who you are and which supports you want to explore.</span>
+            </li>
+            <li class="flex gap-4">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-navy font-bold text-white">2</span>
+              <span><span class="block font-bold text-navy">We contact you</span> We confirm goals, plan arrangements, and whether we have capacity.</span>
+            </li>
+            <li class="flex gap-4">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-navy font-bold text-white">3</span>
+              <span><span class="block font-bold text-navy">Agree, then start</span> Support begins after a service agreement you have had time to review.</span>
+            </li>
+          </ol>
+          <div class="mt-8 rounded-3xl bg-surface p-6 ring-1 ring-navy/10">
+            <h3 class="font-display text-2xl font-semibold text-navy">Talk to the team</h3>
+            <ul class="mt-4 space-y-3">
+              <li class="flex items-start gap-3">
+                <i data-lucide="phone" class="mt-1 h-5 w-5 text-teal"></i>
+                <span><span class="block font-bold text-navy">Phone</span> 1300 XXX XXX</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="mail" class="mt-1 h-5 w-5 text-teal"></i>
+                <span>
+                  <span class="block font-bold text-navy">Email</span>
+                  <a class="font-semibold text-navy underline decoration-teal underline-offset-4" href="mailto:info@melbournecareability.com.au">info@melbournecareability.com.au</a>
+                </span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="map-pin" class="mt-1 h-5 w-5 text-teal"></i>
+                <span><span class="block font-bold text-navy">Region</span> South East Melbourne, Victoria</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rounded-[2rem] bg-surface p-5 ring-1 ring-navy/10 sm:p-8">
+          <form id="referral-form" action="mailto:info@melbournecareability.com.au" method="post" enctype="text/plain">
+            <p class="text-sm font-semibold text-navy">Fields marked with * are required.</p>
+            <div id="form-errors" class="mt-4 rounded-2xl border border-[#7F1D1D] bg-white p-4" role="alert" tabindex="-1" hidden>
+              <p class="font-bold text-[#7F1D1D]">Please check the following:</p>
+              <ul id="form-errors-list" class="mt-2 list-disc space-y-1 pl-5 text-[#7F1D1D]"></ul>
+            </div>
+
+            <div class="absolute -left-[9999px]" aria-hidden="true">
+              <label for="company">Company</label>
+              <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="mt-5 grid gap-5">
+              <div>
+                <label for="full-name" class="mb-1.5 block font-bold text-navy">Full name <span aria-hidden="true">*</span> <span class="sr-only">(required)</span></label>
+                <input id="full-name" name="full-name" class="field" type="text" autocomplete="name" required aria-describedby="full-name-error">
+                <p id="full-name-error" class="mt-1 text-sm font-semibold text-[#7F1D1D]" hidden></p>
+              </div>
+              <div class="grid gap-5 sm:grid-cols-2">
+                <div>
+                  <label for="email" class="mb-1.5 block font-bold text-navy">Email address <span aria-hidden="true">*</span> <span class="sr-only">(required)</span></label>
+                  <input id="email" name="email" class="field" type="email" autocomplete="email" inputmode="email" required aria-describedby="email-error">
+                  <p id="email-error" class="mt-1 text-sm font-semibold text-[#7F1D1D]" hidden></p>
+                </div>
+                <div>
+                  <label for="phone" class="mb-1.5 block font-bold text-navy">Phone number <span aria-hidden="true">*</span> <span class="sr-only">(required)</span></label>
+                  <input id="phone" name="phone" class="field" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="phone-error">
+                  <p id="phone-error" class="mt-1 text-sm font-semibold text-[#7F1D1D]" hidden></p>
+                </div>
+              </div>
+              <div>
+                <label for="suburb" class="mb-1.5 block font-bold text-navy">Suburb / postcode <span aria-hidden="true">*</span> <span class="sr-only">(required)</span></label>
+                <input id="suburb" name="suburb" class="field" type="text" autocomplete="postal-code" required aria-describedby="suburb-error" placeholder="For example, Cranbourne 3977">
+                <p id="suburb-error" class="mt-1 text-sm font-semibold text-[#7F1D1D]" hidden></p>
+              </div>
+              <div>
+                <label for="role" class="mb-1.5 block font-bold text-navy">I am a <span aria-hidden="true">*</span> <span class="sr-only">(required)</span></label>
+                <select id="role" name="role" class="field" required aria-describedby="role-error">
+                  <option value="">Select your role</option>
+                  <option>Participant</option>
+                  <option>Support Coordinator</option>
+                  <option>Family/Carer</option>
+                  <option>Plan Manager</option>
+                  <option>Other</option>
+                </select>
+                <p id="role-error" class="mt-1 text-sm font-semibold text-[#7F1D1D]" hidden></p>
+              </div>
+              <div>
+                <label for="notes" class="mb-1.5 block font-bold text-navy">Additional notes / requirements</label>
+                <textarea id="notes" name="notes" class="field min-h-36" maxlength="2000" aria-describedby="notes-hint"></textarea>
+                <p id="notes-hint" class="mt-1 text-sm">Optional. Include the supports you need, goals, preferred times, language, or access needs. Do not include passwords or payment details.</p>
+              </div>
+              <div>
+                <label class="flex min-h-11 items-start gap-3" for="consent">
+                  <input id="consent" name="consent" class="mt-1 h-5 w-5 shrink-0 accent-navy" type="checkbox" required aria-describedby="consent-error">
+                  <span>I agree to Melbourne Care Ability contacting me about this enquiry. <span aria-hidden="true">*</span> <span class="sr-only">(required)</span></span>
+                </label>
+                <p id="consent-error" class="mt-1 text-sm font-semibold text-[#7F1D1D]" hidden></p>
+              </div>
+            </div>
+            <button class="btn btn-orange mt-6 w-full sm:w-auto" type="submit">Send Intake Request</button>
+            <p class="mt-3 text-sm">We use these details only to respond to your enquiry.</p>
+          </form>
+
+          <div id="form-success" tabindex="-1" hidden>
+            <h3 id="success-heading" class="font-display text-3xl font-semibold text-navy">Thank you</h3>
+            <p id="success-lead" class="mt-3 text-lg"></p>
+            <dl id="success-summary" class="mt-6 space-y-3 rounded-2xl bg-white p-5 ring-1 ring-navy/10"></dl>
+            <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+              <a id="email-referral" class="btn btn-orange" href="mailto:info@melbournecareability.com.au">Email this referral</a>
+              <button id="another-enquiry" class="btn btn-teal" type="button">Start another enquiry</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="on-navy relative overflow-hidden bg-gradient-to-br from-[#0A3A5C] via-navy to-[#0C4568] text-white">
+    <div class="h-1 bg-gradient-to-r from-teal via-[#7FD6D8] to-orange" aria-hidden="true"></div>
+    <div class="border-b border-white/10 bg-black/10">
+      <div class="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.14em] text-[#7FD6D8]">Talk to a local team</p>
+          <p class="mt-1 font-display text-2xl font-semibold leading-tight sm:text-3xl">Ready to arrange support in South East Melbourne?</p>
+        </div>
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a class="inline-flex items-center justify-center gap-2 rounded-full bg-orange px-5 py-3 font-bold text-ink shadow-sm transition-colors hover:bg-white" href="#contact">
+            <i data-lucide="send" class="h-4 w-4"></i>Make a Referral
+          </a>
+          <p class="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-3 font-semibold">
+            <i data-lucide="phone" class="h-4 w-4 text-[#7FD6D8]"></i>1300 XXX XXX
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <a href="#top" class="inline-flex rounded-2xl bg-white px-3 py-2 shadow-card">
+          <img src="logo.png" alt="Melbourne Care Ability" width="589" height="705" class="h-32 w-auto">
+        </a>
+        <p class="mt-4 text-[#E7F4F5]">Registered NDIS disability support for participants across South East Melbourne. Choice, dignity, and local care.</p>
+        <ul class="mt-5 flex flex-wrap gap-2" role="list">
+          <li class="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-sm font-semibold"><i data-lucide="badge-check" class="h-4 w-4 text-[#7FD6D8]"></i>NDIS registered</li>
+          <li class="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-sm font-semibold"><i data-lucide="map-pin" class="h-4 w-4 text-[#7FD6D8]"></i>South East Melbourne</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-display text-2xl font-semibold">Quick links</h2>
+        <ul class="mt-4 space-y-1">
+          <li><a class="group inline-flex items-center gap-2 rounded-lg px-2 py-1.5 text-[#E7F4F5] transition-colors hover:bg-white/10 hover:text-white" href="#services"><i data-lucide="chevron-right" class="h-4 w-4 text-[#7FD6D8] transition-transform group-hover:translate-x-0.5"></i>NDIS Services</a></li>
+          <li><a class="group inline-flex items-center gap-2 rounded-lg px-2 py-1.5 text-[#E7F4F5] transition-colors hover:bg-white/10 hover:text-white" href="#about"><i data-lucide="chevron-right" class="h-4 w-4 text-[#7FD6D8] transition-transform group-hover:translate-x-0.5"></i>About Us</a></li>
+          <li><a class="group inline-flex items-center gap-2 rounded-lg px-2 py-1.5 text-[#E7F4F5] transition-colors hover:bg-white/10 hover:text-white" href="#service-areas"><i data-lucide="chevron-right" class="h-4 w-4 text-[#7FD6D8] transition-transform group-hover:translate-x-0.5"></i>Service Areas</a></li>
+          <li><a class="group inline-flex items-center gap-2 rounded-lg px-2 py-1.5 text-[#E7F4F5] transition-colors hover:bg-white/10 hover:text-white" href="#contact"><i data-lucide="chevron-right" class="h-4 w-4 text-[#7FD6D8] transition-transform group-hover:translate-x-0.5"></i>Make a Referral</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-display text-2xl font-semibold">Popular supports</h2>
+        <ul class="mt-4 space-y-1">
+          <li><a class="group flex items-center gap-3 rounded-lg px-2 py-2 text-[#E7F4F5] transition-colors hover:bg-white/10 hover:text-white" href="services/daily-personal-care/"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-[#7FD6D8] group-hover:bg-[#1B7F82] group-hover:text-white"><i data-lucide="heart-handshake" class="h-4 w-4"></i></span>Daily Personal Care</a></li>
+          <li><a class="group flex items-center gap-3 rounded-lg px-2 py-2 text-[#E7F4F5] transition-colors hover:bg-white/10 hover:text-white" href="services/supported-independent-living/"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-[#7FD6D8] group-hover:bg-[#1B7F82] group-hover:text-white"><i data-lucide="house" class="h-4 w-4"></i></span>Supported Independent Living</a></li>
+          <li><a class="group flex items-center gap-3 rounded-lg px-2 py-2 text-[#E7F4F5] transition-colors hover:bg-white/10 hover:text-white" href="services/community-participation/"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-[#7FD6D8] group-hover:bg-[#1B7F82] group-hover:text-white"><i data-lucide="users" class="h-4 w-4"></i></span>Community Participation</a></li>
+          <li><a class="group flex items-center gap-3 rounded-lg px-2 py-2 text-[#E7F4F5] transition-colors hover:bg-white/10 hover:text-white" href="services/household-tasks/"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-[#7FD6D8] group-hover:bg-[#1B7F82] group-hover:text-white"><i data-lucide="sparkles" class="h-4 w-4"></i></span>Household Tasks</a></li>
+        </ul>
+        <a class="mt-3 inline-flex items-center gap-1.5 px-2 text-sm font-bold text-[#7FD6D8] underline decoration-[#7FD6D8]/50 underline-offset-4 hover:text-white" href="#services">See all services<i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+      </div>
+      <div>
+        <h2 class="font-display text-2xl font-semibold">Contact</h2>
+        <address class="mt-4 space-y-3 not-italic">
+          <p class="flex items-center gap-3 rounded-xl bg-white/10 px-3 py-3">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#1B7F82]"><i data-lucide="map-pin" class="h-4 w-4"></i></span>
+            <span>South East Melbourne<br>Victoria, Australia</span>
+          </p>
+          <p class="flex items-center gap-3 rounded-xl bg-white/10 px-3 py-3">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-orange text-ink"><i data-lucide="phone" class="h-4 w-4"></i></span>
+            <span><span class="block text-xs font-bold uppercase tracking-wide text-[#7FD6D8]">Phone</span>1300 XXX XXX</span>
+          </p>
+          <a class="flex items-center gap-3 rounded-xl bg-white/10 px-3 py-3 transition-colors hover:bg-white/15" href="mailto:info@melbournecareability.com.au">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#1B7F82]"><i data-lucide="mail" class="h-4 w-4"></i></span>
+            <span class="min-w-0 break-all"><span class="block text-xs font-bold uppercase tracking-wide text-[#7FD6D8]">Email</span>info@melbournecareability.com.au</span>
+          </a>
+        </address>
+      </div>
+    </div>
+    <div class="border-t border-white/15">
+      <div class="mx-auto max-w-7xl space-y-3 px-4 py-8 text-[#E7F4F5] sm:px-6">
+        <h2 class="font-display text-2xl font-semibold text-white">NDIS provider notice</h2>
+        <p>Melbourne Care Ability provides disability supports for NDIS participants in South East Melbourne and surrounding suburbs. Services depend on the participant’s plan, funding, worker availability, and a signed service agreement. This website is general information. It is not clinical, legal, or plan-management advice. If someone is in immediate danger, call <a class="font-bold text-white underline" href="tel:000">000</a>.</p>
+      </div>
+    </div>
+    <div class="border-t border-white/15 bg-black/15">
+      <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-sm text-[#E7F4F5] sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <p>© 2026 Melbourne Care Ability. All rights reserved.</p>
+        <p>Designed by <a class="font-semibold text-white underline decoration-orange decoration-2 underline-offset-4" href="https://osmitconsulting.com.au/" target="_blank" rel="noopener">OSM IT CONSULTING</a></p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="https://unpkg.com/lucide@0.511.0/dist/umd/lucide.min.js"></script>
+  <script>
+    (function () {
+      if (window.lucide) {
+        lucide.createIcons({ attrs: { "aria-hidden": "true", focusable: "false" } });
+      }
+
+      var mobileNav = document.getElementById("mobile-nav");
+      var summary = mobileNav.querySelector("summary");
+
+      mobileNav.addEventListener("toggle", function () {
+        summary.setAttribute("aria-label", mobileNav.open ? "Close menu" : "Open menu");
+      });
+
+      mobileNav.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          mobileNav.open = false;
+        });
+      });
+
+      document.addEventListener("click", function (event) {
+        if (mobileNav.open && !mobileNav.contains(event.target)) {
+          mobileNav.open = false;
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && mobileNav.open) {
+          mobileNav.open = false;
+          summary.focus();
+        }
+      });
+
+
+      document.querySelectorAll(".nav-drop").forEach(function (drop) {
+        var button = drop.querySelector(".nav-drop-toggle");
+        if (!button) return;
+        var closeTimer = null;
+        function cancelClose() {
+          if (closeTimer) {
+            clearTimeout(closeTimer);
+            closeTimer = null;
+          }
+        }
+        drop.addEventListener("mouseenter", cancelClose);
+        drop.addEventListener("mouseleave", function () {
+          cancelClose();
+          drop.classList.add("is-open");
+          button.setAttribute("aria-expanded", "true");
+          closeTimer = setTimeout(function () {
+            drop.classList.remove("is-open");
+            button.setAttribute("aria-expanded", "false");
+          }, 400);
+        });
+        button.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          cancelClose();
+          var open = drop.classList.toggle("is-open");
+          button.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+        document.addEventListener("click", function (event) {
+          if (!drop.contains(event.target)) {
+            drop.classList.remove("is-open");
+            button.setAttribute("aria-expanded", "false");
+          }
+        });
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && drop.classList.contains("is-open")) {
+            drop.classList.remove("is-open");
+            button.setAttribute("aria-expanded", "false");
+            button.focus();
+          }
+        });
+      });
+
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll("[data-nav]"));
+      var spyTargets = ["top", "about", "why-choose-us", "services", "service-areas", "contact"]
+        .map(function (id) { return document.getElementById(id); })
+        .filter(Boolean);
+
+      function setCurrent() {
+        var marker = window.scrollY + 160;
+        var current = spyTargets[0];
+        spyTargets.forEach(function (section) {
+          if (section.offsetTop <= marker) current = section;
+        });
+        navLinks.forEach(function (link) {
+          if (link.getAttribute("href") === "#" + current.id) {
+            link.setAttribute("aria-current", "location");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      }
+
+      var ticking = false;
+      window.addEventListener("scroll", function () {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          setCurrent();
+          ticking = false;
+        });
+      }, { passive: true });
+      setCurrent();
+
+      var filterInput = document.getElementById("service-filter");
+      var clearFilter = document.getElementById("clear-filter");
+      var serviceStatus = document.getElementById("service-status");
+      var serviceCards = Array.prototype.slice.call(document.querySelectorAll("#service-grid article"));
+
+      function applyFilter() {
+        var query = filterInput.value.trim().toLowerCase();
+        var shown = 0;
+        serviceCards.forEach(function (card) {
+          var match = !query || card.textContent.toLowerCase().indexOf(query) !== -1;
+          card.classList.toggle("hidden", !match);
+          if (match) shown += 1;
+        });
+        clearFilter.hidden = query.length === 0;
+        if (!query) {
+          serviceStatus.textContent = "";
+        } else if (shown === 0) {
+          serviceStatus.textContent = "No registration groups match your search.";
+        } else {
+          serviceStatus.textContent = shown + " of 14 registration groups shown.";
+        }
+      }
+
+      filterInput.addEventListener("input", applyFilter);
+      clearFilter.addEventListener("click", function () {
+        filterInput.value = "";
+        applyFilter();
+        filterInput.focus();
+      });
+
+      var form = document.getElementById("referral-form");
+      var success = document.getElementById("form-success");
+      var errorBox = document.getElementById("form-errors");
+      var errorList = document.getElementById("form-errors-list");
+      var fields = {
+        name: document.getElementById("full-name"),
+        email: document.getElementById("email"),
+        phone: document.getElementById("phone"),
+        suburb: document.getElementById("suburb"),
+        role: document.getElementById("role"),
+        notes: document.getElementById("notes"),
+        consent: document.getElementById("consent"),
+        company: document.getElementById("company")
+      };
+
+      function setFieldError(input, message) {
+        var error = document.getElementById(input.id + "-error");
+        if (!error) return;
+        if (message) {
+          error.hidden = false;
+          error.textContent = message;
+          input.setAttribute("aria-invalid", "true");
+        } else {
+          error.hidden = true;
+          error.textContent = "";
+          input.removeAttribute("aria-invalid");
+        }
+      }
+
+      function collectErrors() {
+        var errors = [];
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        var digits = fields.phone.value.replace(/\D/g, "");
+
+        if (fields.name.value.trim().length < 2) {
+          errors.push({ input: fields.name, message: "Enter your full name." });
+        }
+        if (!emailPattern.test(fields.email.value.trim())) {
+          errors.push({ input: fields.email, message: "Enter a valid email address." });
+        }
+        if (digits.length < 8 || digits.length > 15) {
+          errors.push({ input: fields.phone, message: "Enter a phone number with at least 8 digits." });
+        }
+        if (fields.suburb.value.trim().length < 2) {
+          errors.push({ input: fields.suburb, message: "Enter a suburb or postcode." });
+        }
+        if (!fields.role.value) {
+          errors.push({ input: fields.role, message: "Select your role." });
+        }
+        if (fields.notes.value.length > 2000) {
+          errors.push({ input: fields.notes, message: "Notes must be 2000 characters or fewer." });
+        }
+        if (!fields.consent.checked) {
+          errors.push({ input: fields.consent, message: "Confirm that we may contact you about this enquiry." });
+        }
+        return errors;
+      }
+
+      function clearErrors() {
+        [fields.name, fields.email, fields.phone, fields.suburb, fields.role, fields.notes, fields.consent].forEach(function (input) {
+          setFieldError(input, "");
+        });
+        errorBox.hidden = true;
+        errorList.textContent = "";
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        if (fields.company.value.trim()) {
+          form.hidden = true;
+          success.hidden = false;
+          document.getElementById("success-lead").textContent = "Thank you. Your enquiry has been noted on this page.";
+          success.focus();
+          return;
+        }
+
+        clearErrors();
+        var errors = collectErrors();
+        if (errors.length) {
+          errors.forEach(function (item) { setFieldError(item.input, item.message); });
+          errorList.textContent = "";
+          errors.forEach(function (item) {
+            var li = document.createElement("li");
+            var button = document.createElement("button");
+            button.type = "button";
+            button.className = "underline";
+            button.textContent = item.message;
+            button.addEventListener("click", function () { item.input.focus(); });
+            li.appendChild(button);
+            errorList.appendChild(li);
+          });
+          errorBox.hidden = false;
+          errorBox.focus();
+          return;
+        }
+
+        var summary = [
+          ["Name", fields.name.value.trim()],
+          ["Email", fields.email.value.trim()],
+          ["Phone", fields.phone.value.trim()],
+          ["Suburb / postcode", fields.suburb.value.trim()],
+          ["Role", fields.role.value],
+          ["Notes", fields.notes.value.trim() || "None"]
+        ];
+
+        var summaryList = document.getElementById("success-summary");
+        summaryList.textContent = "";
+        summary.forEach(function (pair) {
+          var row = document.createElement("div");
+          var dt = document.createElement("dt");
+          var dd = document.createElement("dd");
+          dt.className = "font-bold text-navy";
+          dt.textContent = pair[0];
+          dd.textContent = pair[1];
+          row.appendChild(dt);
+          row.appendChild(dd);
+          summaryList.appendChild(row);
+        });
+
+        var body = summary.map(function (pair) { return pair[0] + ": " + pair[1]; }).join("\n");
+        var mailto = "mailto:info@melbournecareability.com.au?subject=" +
+          encodeURIComponent("NDIS intake request from " + fields.name.value.trim()) +
+          "&body=" + encodeURIComponent(body);
+        document.getElementById("email-referral").setAttribute("href", mailto);
+        document.getElementById("success-lead").textContent =
+          "Thank you, " + fields.name.value.trim() + ". Your intake request is ready on this page. Email it to the team, or call 1300 XXX XXX. This preview does not send the form to a server by itself.";
+
+        form.hidden = true;
+        success.hidden = false;
+        success.focus();
+      });
+
+      document.getElementById("another-enquiry").addEventListener("click", function () {
+        form.reset();
+        clearErrors();
+        success.hidden = true;
+        form.hidden = false;
+        fields.name.focus();
+      });
+    })();
+  </script>
+</body>
+</html>
